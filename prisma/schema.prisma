@@ -1,0 +1,81 @@
+// Altura — Prisma schema
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+enum ListingCategory {
+  COMPANY
+  CORPORATE
+  INVESTOR
+  BANK
+  GOVERNMENT
+  STUDENT
+}
+
+// A single directory entry in the Playbook hub. Fields are intentionally
+// broad/optional since each category (company, investor, government, ...)
+// uses a different subset of them.
+model Listing {
+  id              String          @id @default(cuid())
+  category        ListingCategory
+  name            String
+  tagline         String?
+  description     String
+  website         String?
+  email           String?
+  location        String?
+  tags            String? // comma-separated
+  needs           String? // what this listing is looking for (talent, capital, partners...)
+  offering        String? // what this listing brings to the table
+  fundingStage    String? // companies
+  investmentFocus String? // investors
+  ticketSize      String? // investors
+  program         String? // governments: funds / grants / industrial parks
+  fieldOfStudy    String? // students
+  availability    String? // students: internship, full-time, etc.
+  createdAt       DateTime        @default(now())
+
+  @@index([category])
+}
+
+model ServiceInquiry {
+  id        String   @id @default(cuid())
+  service   String
+  name      String
+  company   String?
+  email     String
+  phone     String?
+  message   String?
+  createdAt DateTime @default(now())
+}
+
+model Event {
+  id          String   @id @default(cuid())
+  title       String
+  vertical    String
+  description String
+  date        DateTime
+  location    String
+  organizer   String
+  url         String
+  featured    Boolean  @default(false)
+  createdAt   DateTime @default(now())
+
+  @@index([vertical])
+}
+
+model ContactMessage {
+  id        String   @id @default(cuid())
+  name      String
+  email     String
+  subject   String?
+  message   String
+  createdAt DateTime @default(now())
+}

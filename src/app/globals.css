@@ -1,0 +1,60 @@
+@import "tailwindcss";
+
+:root {
+  --background: #faf8f3;
+  --foreground: #12151c;
+}
+
+@theme inline {
+  --font-display: var(--font-fraunces);
+  --font-sans: var(--font-inter);
+
+  --color-cream: #faf8f3;
+  --color-cream-dim: #f1ede2;
+  --color-ink: #12151c;
+  --color-slate: #5b6472;
+  --color-slate-light: #8891a0;
+  --color-line: #e4ddca;
+
+  --color-navy-950: #050d1f;
+  --color-navy-900: #0b1e3d;
+  --color-navy-800: #142a4f;
+  --color-navy-700: #1f3b66;
+  --color-navy-600: #2c4d80;
+
+  --color-gold-300: #ecd49a;
+  --color-gold-400: #d9af57;
+  --color-gold-500: #c89b3c;
+  --color-gold-600: #a97f2b;
+
+  --color-cat-company: #1f8a5f;
+  --color-cat-corporate: #2563a8;
+  --color-cat-investor: #7c3aed;
+  --color-cat-bank: #b5852e;
+  --color-cat-government: #b8433f;
+  --color-cat-student: #0f8b8d;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-cream);
+  color: var(--color-ink);
+  font-family: var(--font-sans), sans-serif;
+}
+
+::selection {
+  background: var(--color-gold-400);
+  color: var(--color-navy-950);
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
